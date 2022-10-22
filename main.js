@@ -9,39 +9,42 @@ let completedToDos = 0;
 addBtn.addEventListener("click", addToDo);
 
 class ToDo {
-  constructor(toDoTitle) {
-    this.toDoTitle = toDoTitle;
-    this.toDoStatus = false;
-  }
-
-  set status(status) {
-    this.toDoStatus = status;
-  }
+    constructor(toDoTitle) {
+        this.toDoTitle = toDoTitle;
+        this.toDoStatus = false;
+    }
+  
+    set status (status) {
+        this.toDoStatus = status;
+      }
 }
 
 function addToDo() {
-  text = input.value;
-  if (text.length == 0) {
-    msg.innerHTML = "Input must not be empty";
-    return;
-  } else {
-    let toDo = new ToDo(text);
-    toDoArray.push(toDo);
-    submitToDo(toDo);
-  }
-  msg.innerHTML = "";
+    text = input.value;
+    if (text.length == 0){
+        msg.innerHTML = "Input must not be empty";
+        return;
+    }
+    else{
+        let toDo = new ToDo (text);
+        toDoArray.push(toDo);
+        submitToDo(toDo);
+    }
+    msg.innerHTML = "";
 }
 
 function submitToDo(toDo) {
   let item = document.createElement("li");
   let itemLabel = document.createElement("span");
-  let trash = document.createElement("button");
+  let trash = (document.createElement("button"));
 
   itemLabel.innerText = toDo.toDoTitle;
   item.appendChild(itemLabel);
   list.appendChild(item);
-  trash.appendChild(document.createTextNode("🗑️"));
+  trash.setAttribute("class","trashButton");
+  trash.appendChild(document.createTextNode("\xa0\xa0🗑️"));
   item.appendChild(trash);
+  
 
   itemLabel.addEventListener(
     "click",
@@ -61,6 +64,6 @@ function submitToDo(toDo) {
   });
 }
 
-function keepTrack() {
-  showCompleted.innerHTML = `${completedToDos} completed`;
+function keepTrack (){
+    showCompleted.innerHTML = `${completedToDos} completed`;
 }
